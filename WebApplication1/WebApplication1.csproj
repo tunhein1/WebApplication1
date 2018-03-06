@@ -21,11 +21,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\components\contact.tsx" />
     <None Remove="Properties\PublishProfiles\WebAppReact - Web Deploy.pubxml" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Properties\PublishProfiles\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\components\contact.tsx" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">
