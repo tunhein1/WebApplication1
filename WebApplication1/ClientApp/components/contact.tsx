@@ -17,6 +17,9 @@ export class Contact extends React.Component<RouteComponentProps<{}>, ContactSta
         this.handleClick = this.handleClick.bind(this);
         this.tick = this.tick.bind(this);
         setInterval(this.tick, 1000);
+        this.welcomeRender = this.welcomeRender.bind(this);
+
+        //setInterval(this.welcomeRender, 1000);
     }
 
     public render() {
@@ -26,6 +29,8 @@ export class Contact extends React.Component<RouteComponentProps<{}>, ContactSta
             <p>Please contact to the following person:</p>
 
             {this.state.isDisplay ? < NameResult /> : ""}
+
+            {< WelcomeRenderResult />}
 
             <button onClick={this.handleClick} > See person {this.state.isDisplay}</button>
 
@@ -40,6 +45,8 @@ export class Contact extends React.Component<RouteComponentProps<{}>, ContactSta
             <div id='clock-div'>
                 
             </div>
+
+            <div id='welcome-div'></div>
             
             </div>;
 
@@ -48,12 +55,12 @@ export class Contact extends React.Component<RouteComponentProps<{}>, ContactSta
    
 
     handleClick() {
-        console.log("button clicked.");
+        //console.log("button clicked.");
         this.setState({
             isDisplay: !this.state.isDisplay
         });
 
-        console.log(this.state.isDisplay);
+        //console.log(this.state.isDisplay);
     }
 
     tick() {
@@ -64,13 +71,33 @@ export class Contact extends React.Component<RouteComponentProps<{}>, ContactSta
             </div>);
 
         ReactDOM.render(element, document.getElementById('clock-div'));
+    }
+
+    welcomeRender() {
+        const element = <Welcome name="Sara" />;
+        console.log("function welcome called");
+        ReactDOM.render(element, document.getElementById('welcome-div'));
+
         
     }
 
 }
 
+function Welcome(props) {
+    console.log("function welcome h1 returned.");
+    return <h1>Hello, {props.name} </h1>;
+}
+
+
 var NameResult = React.createClass({
     render() {
         return <div>Jonny English</div>;
+    }
+});
+
+var WelcomeRenderResult = React.createClass({
+    render() {
+        const element = <Welcome name="Sara Result" />;
+        return element;
     }
 });
